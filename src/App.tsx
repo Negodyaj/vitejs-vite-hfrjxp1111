@@ -1,13 +1,13 @@
-import { useState } from 'react';
-import { Route, Routes } from 'react-router-dom';
-import './App.scss';
-import { AppHeader } from './components/AppHeader/AppHeader';
-import { HomePage } from './pages/HomePage/HomePage';
-import { LoginPage } from './pages/LoginPage/LoginPage';
-import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
-import { User } from './models/user';
-import { MapPage } from './pages/MapPage/MapPage';
-import { Layout, theme } from 'antd';
+import { useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import "./App.scss";
+import { AppHeader } from "./components/AppHeader/AppHeader";
+import { HomePage } from "./pages/HomePage/HomePage";
+import { LoginPage } from "./pages/LoginPage/LoginPage";
+import { NotFoundPage } from "./pages/NotFoundPage/NotFoundPage";
+import { User } from "./models/user";
+import { MapPage } from "./pages/MapPage/MapPage";
+import { Layout, theme } from "antd";
 const { Content, Footer } = Layout;
 
 function App() {
@@ -25,7 +25,7 @@ function App() {
     <>
       <Layout className="layout">
         <AppHeader userInfo={userInfo} />
-        <Content style={{ padding: '0 50px' }}>
+        <Content style={{ padding: "0 50px" }}>
           {userInfo ? (
             <Routes>
               <Route index path="/" element={<HomePage />} />
@@ -54,9 +54,9 @@ function App() {
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
           )}
-          Current user is: {userInfo ? userInfo.name : 'undefined'}
+          Current user is: {userInfo ? userInfo.name : "undefined"}
         </Content>
-        <Footer style={{ textAlign: 'center' }}>
+        <Footer style={{ textAlign: "center" }}>
           Ant Design ©2023 Created by Ant UED
         </Footer>
       </Layout>
