@@ -1,17 +1,15 @@
 import { useEffect, useState } from "react";
 import "./HomePage.scss";
 import { User } from "../../models/user";
-import axios from "axios";
+import { sendGetRequest } from "../../services/http.service";
 
 export const HomePage = () => {
   const [users, setUsers] = useState<User[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get<User[]>(
-        "https://jsonplaceholder.typicode.com/users"
-      );
-      setUsers(response.data);
+      const response = await sendGetRequest<User[]>("/users");
+      setUsers(response);
     };
     fetchData();
   }, []);

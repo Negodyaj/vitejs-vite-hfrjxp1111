@@ -1,7 +1,7 @@
-import axios from "axios";
 import { User } from "../../models/user";
 import "./LoginPage.scss";
 import { Button, Checkbox, Form, Input } from "antd";
+import { sendPostRequest } from "../../services/http.service";
 
 type LoginPageProps = {
   logInHandler: (user: User) => void;
@@ -31,11 +31,8 @@ export const LoginPage = (props: LoginPageProps) => {
     };
 
     try {
-      const response = await axios.post(
-        "https://jsonplaceholder.typicode.com/api/login",
-        payload
-      );
-      console.log(response.data);
+      const response = await sendPostRequest("/api/login", payload);
+      console.log(response);
     } catch (err) {
       console.log(err);
     }
