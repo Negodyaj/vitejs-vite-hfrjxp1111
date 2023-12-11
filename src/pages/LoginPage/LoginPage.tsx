@@ -1,3 +1,4 @@
+import axios from "axios";
 import { User } from "../../models/user";
 import "./LoginPage.scss";
 import { Button, Checkbox, Form, Input } from "antd";
@@ -29,18 +30,15 @@ export const LoginPage = (props: LoginPageProps) => {
       password: values.password,
     };
 
-    const response = await fetch(
-      "https://jsonplaceholder.typicode.com/api/login",
-      {
-        method: "POST",
-        body: JSON.stringify(payload),
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-        },
-      }
-    );
-    const data = await response.json();
-    console.log(data);
+    try {
+      const response = await axios.post(
+        "https://jsonplaceholder.typicode.com/api/login",
+        payload
+      );
+      console.log(response.data);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
