@@ -13,10 +13,11 @@ type LoginFormFields = {
 };
 
 export const LoginPage = (props: LoginPageProps) => {
-  const onFinish = (values: LoginFormFields) => {
+  const onFinish = async (values: LoginFormFields) => {
     console.log(values);
     // later user info will be received from the backend
     const user: User = {
+      id: 1,
       login: values.login!,
       name: "Antoshka",
     };
@@ -28,15 +29,18 @@ export const LoginPage = (props: LoginPageProps) => {
       password: values.password,
     };
 
-    fetch("https://jsonplaceholder.typicode.com/api/login", {
-      method: "POST",
-      body: JSON.stringify(payload),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    })
-      .then((response) => response.json())
-      .then((json) => console.log(json));
+    const response = await fetch(
+      "https://jsonplaceholder.typicode.com/api/login",
+      {
+        method: "POST",
+        body: JSON.stringify(payload),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      }
+    );
+    const data = await response.json();
+    console.log(data);
   };
 
   return (
